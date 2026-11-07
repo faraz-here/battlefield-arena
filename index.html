@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BATTLEFIELD ARENA - Premium PUBG eSports</title>
+    <!-- SITE ICON (FAVICON) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><circle cx='256' cy='256' r='200' fill='%23030108' stroke='%23fbbf24' stroke-width='40'/><circle cx='256' cy='256' r='60' fill='%238b5cf6'/><rect x='236' y='0' width='40' height='120' fill='%23fbbf24'/><rect x='236' y='392' width='40' height='120' fill='%23fbbf24'/><rect x='0' y='236' width='120' height='40' fill='%23fbbf24'/><rect x='392' y='236' width='120' height='40' fill='%23fbbf24'/></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -11,1143 +13,266 @@
            PREMIUM ROYAL DARK THEME (GLASSMORPHISM)
            ============================================ */
         :root {
-            --bg-base: #030108;
-            --bg-surface: rgba(13, 8, 24, 0.4);
-            --bg-card: rgba(20, 12, 38, 0.5);
-            --bg-glass: rgba(5, 2, 10, 0.75);
-
-            --accent-gold: #fbbf24;
-            --accent-gold-light: #fcd34d;
-            --accent-gold-dark: #d97706;
-            --gold-glow: rgba(251, 191, 36, 0.2);
-
-            --accent-purple: #8b5cf6;
-            --accent-purple-light: #a78bfa;
-            --purple-glow: rgba(139, 92, 246, 0.25);
-
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --text-muted: #64748b;
-
-            --border-light: rgba(255, 255, 255, 0.08);
-            --border-gold: rgba(251, 191, 36, 0.3);
-            --border-purple: rgba(139, 92, 246, 0.3);
-
-            --success: #10b981;
-            --danger: #ef4444;
-
-            --shadow-premium: 0 8px 32px rgba(0, 0, 0, 0.4);
-            --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.15);
-            --shadow-glow-gold: 0 0 40px rgba(251, 191, 36, 0.15);
-
+            --bg-base: #030108; --bg-surface: rgba(13, 8, 24, 0.4); --bg-card: rgba(20, 12, 38, 0.5); --bg-glass: rgba(5, 2, 10, 0.75);
+            --accent-gold: #fbbf24; --accent-gold-light: #fcd34d; --accent-gold-dark: #d97706;
+            --accent-purple: #8b5cf6; --accent-purple-light: #a78bfa;
+            --text-primary: #ffffff; --text-secondary: #cbd5e1; --text-muted: #64748b;
+            --border-light: rgba(255, 255, 255, 0.08); --border-gold: rgba(251, 191, 36, 0.3); --border-purple: rgba(139, 92, 246, 0.3);
+            --success: #10b981; --danger: #ef4444;
+            --shadow-premium: 0 8px 32px rgba(0, 0, 0, 0.4); --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.15); --shadow-glow-gold: 0 0 40px rgba(251, 191, 36, 0.15);
             --gradient-gold: linear-gradient(135deg, #f59e0b, #fbbf24, #fef3c7);
             --gradient-purple: linear-gradient(135deg, #6d28d9, #8b5cf6, #c4b5fd);
             --gradient-premium: linear-gradient(135deg, #8b5cf6 0%, #fbbf24 100%);
         }
 
-        /* ============================================
-           RESET & BASE
-           ============================================ */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent-purple) var(--bg-base); }
+        ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg-base); } ::-webkit-scrollbar-thumb { background: var(--gradient-premium); border-radius: 3px; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-base); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-purple) var(--bg-base);
-        }
+        .bg-texture { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; opacity: 0.12; mix-blend-mode: luminosity; }
+        .bg-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.08) 0%, transparent 50%); }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-base); }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gradient-premium);
-            border-radius: 3px;
-        }
+        .navbar, .announce-bar, section, footer, .modal-overlay, .float-chat, .scroll-top { position: relative; z-index: 10; }
+        .navbar { z-index: 1000; } .modal-overlay { z-index: 2000; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-base);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ============================================
-           PREMIUM PUBG TEXTURE BACKGROUND
-           ============================================ */
-        .bg-texture {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background-image: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.12; 
-            mix-blend-mode: luminosity;
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            background: radial-gradient(circle at top right, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(251, 191, 36, 0.08) 0%, transparent 50%);
-        }
-
-        .navbar, .announce-bar, section, footer, .modal-overlay, .float-chat, .scroll-top {
-            position: relative;
-            z-index: 10;
-        }
-
-        .navbar { z-index: 1000; }
-        .modal-overlay { z-index: 2000; }
-        .float-chat, .scroll-top { z-index: 999; }
-
-        /* ============================================
-           PRELOADER
-           ============================================ */
-        .preloader {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: var(--bg-base);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-ring {
-            width: 60px; height: 60px;
-            border: 2px solid var(--border-light);
-            border-top-color: var(--accent-gold);
-            border-bottom-color: var(--accent-purple);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-
+        /* PRELOADER */
+        .preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-base); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 10000; transition: opacity 0.6s ease, visibility 0.6s ease; }
+        .preloader.hidden { opacity: 0; visibility: hidden; }
+        .loader-ring { width: 60px; height: 60px; border: 2px solid var(--border-light); border-top-color: var(--accent-gold); border-bottom-color: var(--accent-purple); border-radius: 50%; animation: spin 1s linear infinite; margin-bottom: 20px; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .preloader-text { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; font-weight: 700; letter-spacing: 4px; background: var(--gradient-premium); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .preloader-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            background: var(--gradient-premium);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* ============================================
-           ANNOUNCEMENT BAR
-           ============================================ */
-        .announce-bar {
-            background: rgba(139, 92, 246, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-purple);
-            padding: 8px 20px;
-            text-align: center;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--accent-gold-light);
-            z-index: 1001 !important;
-            letter-spacing: 0.5px;
-            position: relative;
-        }
-
-        .announce-bar a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 8px;
-            font-weight: 700;
-            border-bottom: 1px solid #fff;
-        }
-
-        /* ============================================
-           NAVBAR (GLASS)
-           ============================================ */
-        .navbar {
-            position: fixed;
-            top: 33px; left: 0;
-            width: 100%;
-            padding: 16px 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000;
-        }
-
-        .navbar.scrolled {
-            top: 0;
-            background: var(--bg-glass);
-            backdrop-filter: blur(24px) saturate(180%);
-            -webkit-backdrop-filter: blur(24px) saturate(180%);
-            border-bottom: 1px solid var(--border-light);
-            padding: 12px 0;
-            box-shadow: var(--shadow-premium);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .nav-logo-icon {
-            width: 44px; height: 44px;
-            background: var(--gradient-premium);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: white;
-            box-shadow: var(--shadow-glow-purple);
-        }
-
-        .nav-logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            letter-spacing: 1.5px;
-            color: #fff;
-        }
-
-        .nav-logo-text span {
-            color: var(--accent-gold);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-secondary);
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--accent-gold);
-            background: rgba(251, 191, 36, 0.05);
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-outline {
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-light);
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-premium {
-            padding: 9px 24px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-family: 'Inter', sans-serif;
-            background: var(--gradient-gold);
-            color: var(--bg-base);
-            box-shadow: var(--shadow-glow-gold);
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4);
-        }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .mobile-toggle span {
-            width: 22px; height: 2px;
-            background: var(--text-primary);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        /* ============================================
-           HERO SECTION
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 160px 40px 80px;
-            position: relative;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: rgba(139, 92, 246, 0.1);
-            border: 1px solid var(--border-purple);
-            border-radius: 50px;
-            font-size: 0.75rem;
-            color: var(--accent-purple-light);
-            font-weight: 600;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            animation: fadeUp 0.8s ease;
-        }
-
-        .hero-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            animation: fadeUp 0.8s ease 0.1s both;
-            letter-spacing: 1px;
-        }
-
-        .hero-title .text-gold {
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
-            animation: fadeUp 0.8s ease 0.2s both;
-        }
-
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 60px;
-            animation: fadeUp 0.8s ease 0.3s both;
-        }
-
-        .btn-large {
-            padding: 16px 36px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: 'Inter', sans-serif;
-            border: none;
-        }
-
-        .btn-gold {
-            background: var(--gradient-gold);
-            color: var(--bg-base);
-            box-shadow: var(--shadow-glow-gold);
-        }
-
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
-        }
-
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-            border: 1px solid var(--border-light);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ============================================
-           SECTION COMMON
-           ============================================ */
-        .section { padding: 100px 40px; position: relative; z-index: 10;}
-        .container { max-width: 1320px; margin: 0 auto; }
+        /* ANNOUNCE BAR & NAVBAR */
+        .announce-bar { background: rgba(139, 92, 246, 0.1); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-purple); padding: 8px 20px; text-align: center; font-size: 0.8rem; font-weight: 500; color: var(--accent-gold-light); z-index: 1001 !important; letter-spacing: 0.5px; }
+        .announce-bar a { color: #fff; text-decoration: none; margin-left: 8px; font-weight: 700; border-bottom: 1px solid #fff; }
+        .navbar { position: fixed; top: 33px; left: 0; width: 100%; padding: 16px 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000; }
+        .navbar.scrolled { top: 0; background: var(--bg-glass); backdrop-filter: blur(24px) saturate(180%); border-bottom: 1px solid var(--border-light); padding: 12px 0; box-shadow: var(--shadow-premium); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-logo-icon { width: 44px; height: 44px; background: var(--gradient-premium); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; box-shadow: var(--shadow-glow-purple); }
+        .nav-logo-text { font-family: 'Orbitron', sans-serif; font-weight: 800; font-size: 1.2rem; letter-spacing: 1.5px; color: #fff; }
+        .nav-logo-text span { color: var(--accent-gold); }
+        .nav-links { display: flex; align-items: center; gap: 8px; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); padding: 8px 16px; border-radius: 8px; font-weight: 500; font-size: 0.9rem; transition: all 0.3s ease; }
         
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
+        /* ACTIVE TAB STYLING */
+        .nav-links a:hover, .nav-links a.active { color: var(--accent-gold); background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.3); }
+        
+        .nav-actions { display: flex; align-items: center; gap: 12px; }
+        .btn-outline { padding: 8px 18px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; background: transparent; color: var(--text-primary); border: 1px solid var(--border-light); font-family: 'Inter', sans-serif; }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.3); }
+        .btn-premium { padding: 9px 24px; border-radius: 10px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; border: none; font-family: 'Inter', sans-serif; background: var(--gradient-gold); color: var(--bg-base); box-shadow: var(--shadow-glow-gold); }
+        .btn-premium:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(251, 191, 36, 0.4); }
 
-        .section-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 160px 40px 80px; position: relative; }
+        .hero-content { text-align: center; max-width: 900px; z-index: 2; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; background: rgba(139, 92, 246, 0.1); border: 1px solid var(--border-purple); border-radius: 50px; font-size: 0.75rem; color: var(--accent-purple-light); font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; text-transform: uppercase; animation: fadeUp 0.8s ease; }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: 5rem; font-weight: 800; line-height: 1.1; margin-bottom: 24px; animation: fadeUp 0.8s ease 0.1s both; letter-spacing: 1px; }
+        .hero-title .text-gold { background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 40px; line-height: 1.8; animation: fadeUp 0.8s ease 0.2s both; }
+        .hero-actions { display: flex; justify-content: center; gap: 16px; margin-bottom: 60px; animation: fadeUp 0.8s ease 0.3s both; }
+        .btn-large { padding: 16px 36px; border-radius: 12px; font-size: 1rem; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s ease; text-decoration: none; font-family: 'Inter', sans-serif; border: none; }
+        .btn-gold { background: var(--gradient-gold); color: var(--bg-base); box-shadow: var(--shadow-glow-gold); }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4); }
+        .btn-glass { background: rgba(255, 255, 255, 0.05); color: var(--text-primary); border: 1px solid var(--border-light); backdrop-filter: blur(10px); }
+        .btn-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); transform: translateY(-3px); }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* SECTION COMMON */
+        .section { padding: 100px 40px; position: relative; z-index: 10; }
+        .container { max-width: 1320px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title { font-family: 'Orbitron', sans-serif; font-size: 2.8rem; font-weight: 800; margin-bottom: 16px; }
         .section-title span { color: var(--accent-gold); }
         .section-subtitle { color: var(--text-secondary); font-size: 1rem; }
 
-        /* ============================================
-           TOURNAMENT CARDS 
-           ============================================ */
-        .tournaments-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 24px;
-        }
-
-        .t-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            padding-bottom: 8px;
-        }
-
-        .t-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-gold);
-            box-shadow: var(--shadow-glow-gold);
-        }
-
-        .t-banner {
-            height: 160px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(to bottom, rgba(251, 191, 36, 0.1), transparent);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .t-tag {
-            position: absolute;
-            top: 16px; left: 16px;
-            padding: 6px 14px;
-            background: var(--gradient-gold);
-            color: var(--bg-base);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .t-status.live-now {
-            position: absolute;
-            top: 14px; right: 14px;
-            padding: 8px 18px;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.6);
-            color: #ef4444; 
-            border-radius: 10px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
-            letter-spacing: 1px;
-            animation: livePulse 2s infinite;
-        }
-
-        @keyframes livePulse {
-            0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.8); }
-            100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
-        }
-
-        .t-status.live-now .dot {
-            width: 8px; height: 8px;
-            background: #ef4444;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ef4444;
-            animation: pulse 1s infinite;
-        }
-
-        .t-status.normal {
-            position: absolute;
-            top: 16px; right: 16px;
-            padding: 6px 14px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: var(--success);
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        
-        .t-status.normal .dot {
-            width: 6px; height: 6px;
-            background: var(--success);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-
-        .t-banner-center {
-            text-align: center;
-            font-family: 'Orbitron', sans-serif;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.8rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-
+        /* TOURNAMENT CARDS */
+        .tournaments-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 24px; }
+        .t-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; overflow: hidden; transition: all 0.4s ease; backdrop-filter: blur(16px); padding-bottom: 8px; }
+        .t-card:hover { transform: translateY(-8px); border-color: var(--border-gold); box-shadow: var(--shadow-glow-gold); }
+        .t-banner { height: 160px; position: relative; display: flex; align-items: center; justify-content: center; background: linear-gradient(to bottom, rgba(251, 191, 36, 0.1), transparent); border-bottom: 1px solid var(--border-light); }
+        .t-tag { position: absolute; top: 16px; left: 16px; padding: 6px 14px; background: var(--gradient-gold); color: var(--bg-base); border-radius: 8px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .t-status.live-now { position: absolute; top: 14px; right: 14px; padding: 8px 18px; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.6); color: #ef4444; border-radius: 10px; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 8px; box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); letter-spacing: 1px; animation: livePulse 2s infinite; }
+        @keyframes livePulse { 0% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); } 50% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.8); } 100% { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); } }
+        .t-status.live-now .dot { width: 8px; height: 8px; background: #ef4444; border-radius: 50%; box-shadow: 0 0 10px #ef4444; animation: pulse 1s infinite; }
+        .t-status.normal { position: absolute; top: 16px; right: 16px; padding: 6px 14px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: var(--success); border-radius: 8px; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .t-banner-center { text-align: center; font-family: 'Orbitron', sans-serif; color: rgba(255, 255, 255, 0.9); font-size: 1.8rem; font-weight: 800; letter-spacing: 2px; text-shadow: 0 4px 12px rgba(0,0,0,0.5); }
         .t-body { padding: 28px; }
-
-        .t-name {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 24px; 
-            text-align: center;
-        }
-
-        .t-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin-bottom: 28px;
-        }
-
-        .t-stat {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 16px 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .t-card:hover .t-stat { border-color: rgba(255, 255, 255, 0.1); }
-
-        .t-stat-val {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            margin-bottom: 4px;
-        }
-
-        .t-stat-label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .t-name { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 24px; text-align: center; }
+        .t-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 28px; }
+        .t-stat { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-light); border-radius: 12px; padding: 16px 10px; text-align: center; transition: all 0.3s ease; }
+        .t-stat-val { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent-gold); margin-bottom: 4px; }
+        .t-stat-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
         .t-actions { display: flex; gap: 12px; }
+        .t-btn-join { flex: 1; padding: 14px; background: rgba(251, 191, 36, 0.1); color: var(--accent-gold); border: 1px solid var(--border-gold); border-radius: 10px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Inter', sans-serif; }
+        .t-btn-join:hover:not(:disabled) { background: var(--gradient-gold); color: var(--bg-base); box-shadow: var(--shadow-glow-gold); }
 
-        .t-btn-join {
-            flex: 1;
-            padding: 14px;
-            background: rgba(251, 191, 36, 0.1);
-            color: var(--accent-gold);
-            border: 1px solid var(--border-gold);
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: 'Inter', sans-serif;
-        }
+        /* UC STORE */
+        .store-alert { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-left: 4px solid var(--danger); padding: 20px 24px; border-radius: 12px; margin: 0 auto 40px; max-width: 900px; text-align: left; display: flex; gap: 16px; align-items: flex-start; backdrop-filter: blur(10px); }
+        .store-alert i { color: var(--danger); font-size: 1.6rem; margin-top: 2px; }
+        .store-alert-content h4 { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; margin-bottom: 6px; font-weight: 700; color: #fff; letter-spacing: 0.5px; }
+        .store-alert-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .store-alert-content span { color: var(--accent-gold-light); font-weight: 600; }
+        .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .store-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 20px; padding: 24px; text-align: center; transition: all 0.4s ease; backdrop-filter: blur(16px); display: flex; flex-direction: column; align-items: center; }
+        .store-card:hover { transform: translateY(-8px); border-color: var(--border-purple); box-shadow: var(--shadow-glow-purple); }
+        .store-img-wrapper { width: 100%; height: 180px; border-radius: 14px; overflow: hidden; margin-bottom: 24px; position: relative; background: #000; border: 1px solid rgba(255,255,255,0.05); }
+        .store-img-wrapper img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: transform 0.5s ease; }
+        .store-card:hover .store-img-wrapper img { transform: scale(1.08); opacity: 1; }
+        .store-title { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; background: var(--gradient-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .store-prices { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 16px; }
+        .price-old { font-size: 1.1rem; color: var(--danger); text-decoration: line-through; opacity: 0.8; font-weight: 500; }
+        .price-new { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; }
+        .uc-perks { list-style: none; margin-bottom: 24px; text-align: left; width: 100%; }
+        .uc-perks li { padding: 6px 0; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
+        .btn-store { width: 100%; padding: 14px; background: var(--gradient-premium); color: #fff; border: none; border-radius: 12px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; margin-top: auto; }
+        .btn-store:hover { box-shadow: var(--shadow-glow-purple); transform: translateY(-2px); }
 
-        .t-btn-join:hover {
-            background: var(--gradient-gold);
-            color: var(--bg-base);
-            box-shadow: var(--shadow-glow-gold);
-        }
-
-        /* ============================================
-           UC STORE (UPDATED WITH DISCLAIMER & PUBG PICS)
-           ============================================ */
-        .store-alert {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.3);
-            border-left: 4px solid var(--danger);
-            padding: 20px 24px;
-            border-radius: 12px;
-            margin: 0 auto 40px;
-            max-width: 900px;
-            text-align: left;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-            backdrop-filter: blur(10px);
-        }
-
-        .store-alert i {
-            color: var(--danger);
-            font-size: 1.6rem;
-            margin-top: 2px;
-        }
-
-        .store-alert-content h4 {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.2rem;
-            margin-bottom: 6px;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 0.5px;
-        }
-
-        .store-alert-content p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        .store-alert-content span {
-            color: var(--accent-gold-light);
-            font-weight: 600;
-        }
-
-        .store-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .store-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 24px;
-            text-align: center;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .store-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--border-purple);
-            box-shadow: var(--shadow-glow-purple);
-        }
-
-        .store-img-wrapper {
-            width: 100%;
-            height: 180px;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            position: relative;
-            background: #000;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .store-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.85;
-            transition: transform 0.5s ease;
-        }
-
-        .store-card:hover .store-img-wrapper img {
-            transform: scale(1.08);
-            opacity: 1;
-        }
-
-        .store-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            background: var(--gradient-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .store-prices {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .price-old {
-            font-size: 1.1rem;
-            color: var(--danger);
-            text-decoration: line-through;
-            opacity: 0.8;
-            font-weight: 500;
-        }
-
-        .price-new {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .uc-perks {
-            list-style: none;
-            margin-bottom: 24px;
-            text-align: left;
-            width: 100%;
-        }
-
-        .uc-perks li {
-            padding: 6px 0;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .uc-perks li i {
-            color: var(--success);
-            font-size: 0.75rem;
-            width: 16px;
-            text-align: center;
-        }
-
-        .btn-store {
-            width: 100%;
-            padding: 14px;
-            background: var(--gradient-premium);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: auto;
-        }
-
-        .btn-store:hover {
-            box-shadow: var(--shadow-glow-purple);
-            transform: translateY(-2px);
-        }
-
-        .badge-soon {
-            display: inline-block;
-            background: rgba(239, 68, 68, 0.15);
-            color: #ef4444;
-            border: 1px solid rgba(239, 68, 68, 0.4);
-            padding: 4px 12px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* ============================================
-           FEATURES
-           ============================================ */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .f-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            padding: 36px 30px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(16px);
-        }
-
-        .f-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-gold);
-        }
-
-        .f-icon {
-            width: 50px; height: 50px;
-            border-radius: 12px;
-            background: rgba(251, 191, 36, 0.1);
-            color: var(--accent-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-        }
-
-        .f-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .f-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* ============================================
-           FAQ
-           ============================================ */
+        /* FEATURES & FAQ */
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .f-card { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; padding: 36px 30px; transition: all 0.3s ease; }
+        .f-card:hover { transform: translateY(-5px); border-color: var(--border-gold); }
+        .f-icon { width: 50px; height: 50px; border-radius: 12px; background: rgba(251, 191, 36, 0.1); color: var(--accent-gold); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 20px; }
+        .f-title { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+        .f-desc { font-size: 0.9rem; color: var(--text-secondary); }
         .faq-wrap { max-width: 800px; margin: 0 auto; }
-
-        .faq-item {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: all 0.3s ease; }
         .faq-item:hover { border-color: var(--border-gold); }
-
-        .faq-q {
-            padding: 20px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 1rem;
-        }
-
+        .faq-q { padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 500; }
         .faq-q i { color: var(--accent-gold); transition: transform 0.3s; }
         .faq-item.open .faq-q i { transform: rotate(180deg); }
-
         .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
         .faq-item.open .faq-a { max-height: 200px; }
         .faq-a-inner { padding: 0 24px 20px; font-size: 0.9rem; color: var(--text-secondary); }
 
-        /* ============================================
-           MODALS (REGISTER & LOGIN)
-           ============================================ */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(3, 1, 8, 0.85);
-            backdrop-filter: blur(10px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 2000;
-        }
+        /* MODALS */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(3, 1, 8, 0.85); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
         .modal-overlay.active { display: flex; }
-        
-        .modal {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            width: 100%;
-            max-width: 440px;
-            padding: 40px;
-            position: relative;
-            animation: modalSlide 0.3s ease;
-            box-shadow: var(--shadow-premium);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-        
-        @keyframes modalSlide {
-            from { transform: translateY(20px) scale(0.97); opacity: 0; }
-            to { transform: translateY(0) scale(1); opacity: 1; }
-        }
+        .modal { background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 24px; width: 100%; max-width: 440px; padding: 40px; position: relative; animation: modalSlide 0.3s ease; box-shadow: var(--shadow-premium); max-height: 90vh; overflow-y: auto; }
+        @keyframes modalSlide { from { transform: translateY(20px) scale(0.97); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+        .modal-close { position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-light); border-radius: 10px; color: var(--text-muted); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .modal-close:hover { background: var(--danger); border-color: var(--danger); color: white; }
+        .modal-heading { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 6px; }
+        .modal-sub { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 24px; }
+        .input-group { margin-bottom: 16px; text-align: left; }
+        .input-label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 7px; }
+        .input-field { width: 100%; padding: 12px 16px; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--border-light); border-radius: 12px; color: var(--text-primary); font-size: 0.92rem; outline: none; font-family: 'Inter', sans-serif; }
+        .input-field option { background: #140c26; color: #fff; }
+        .input-field:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2); }
+        .modal-btn { width: 100%; padding: 14px; background: var(--gradient-gold); color: var(--bg-base); border: none; border-radius: 12px; font-weight: 700; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px; text-decoration: none; }
+        .modal-btn:hover:not(:disabled) { box-shadow: var(--shadow-glow-gold); transform: translateY(-2px); }
+        .modal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .divider { display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--text-muted); font-size: 0.85rem; }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-light); }
+        .divider:not(:empty)::before { margin-right: .25em; } .divider:not(:empty)::after { margin-left: .25em; }
+        .btn-google { width: 100%; padding: 12px; background: #ffffff; color: #333333; border: none; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-google:hover { background: #f1f1f1; }
 
-        .modal-close {
-            position: absolute;
-            top: 16px; right: 16px;
-            width: 36px; height: 36px;
-            background: rgba(255, 255, 255, 0.05);
+        /* PAYMENT DETAILS BOX IN MODAL */
+        .payment-send-box {
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid var(--border-purple);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .payment-send-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .payment-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.35);
             border: 1px solid var(--border-light);
             border-radius: 10px;
-            color: var(--text-muted);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-        
-        .modal-close:hover {
-            background: var(--danger);
-            border-color: var(--danger);
-            color: white;
-        }
-
-        .modal-heading {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .modal-sub {
-            font-size: 0.88rem;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-        }
-
-        .input-group { margin-bottom: 16px; text-align: left; }
-        
-        .input-label {
-            display: block;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 7px;
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            color: var(--text-primary);
-            font-size: 0.92rem;
-            transition: all 0.3s ease;
-            outline: none;
-            font-family: 'Inter', sans-serif;
-        }
-        
-        .input-field:focus {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.2);
-        }
-
-        .modal-btn {
-            width: 100%;
-            padding: 14px;
-            background: var(--gradient-gold);
-            color: var(--bg-base);
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 8px;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .modal-btn:hover {
-            box-shadow: var(--shadow-glow-gold);
-            transform: translateY(-2px);
-        }
-
-        /* GOOGLE BUTTON STYLES */
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            color: var(--text-muted);
+            padding: 10px 14px;
+            margin-bottom: 8px;
             font-size: 0.85rem;
         }
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid var(--border-light);
+        .payment-detail-row:last-child {
+            margin-bottom: 0;
         }
-        .divider:not(:empty)::before { margin-right: .25em; }
-        .divider:not(:empty)::after { margin-left: .25em; }
-
-        .btn-google {
-            width: 100%;
-            padding: 12px;
-            background: #ffffff;
-            color: #333333;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-google:hover {
-            background: #f1f1f1;
-            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
-        }
-
-        /* CUSTOM FILE UPLOAD STYLING */
-        .file-upload-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        
-        .file-input {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-            z-index: 2;
-        }
-        
-        .file-label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed var(--border-gold);
-            border-radius: 12px;
+        .payment-detail-label {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .payment-detail-val {
+            color: #fff;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
             gap: 8px;
-            text-align: center;
         }
-        
-        .file-label i {
-            font-size: 1.5rem;
+        .copy-btn {
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid var(--border-gold);
             color: var(--accent-gold);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.72rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
         }
-        
-        .file-upload-wrapper:hover .file-label {
-            background: rgba(251, 191, 36, 0.05);
-            border-color: var(--accent-gold);
-        }
-
-        /* ============================================
-           FOOTER
-           ============================================ */
-        .footer {
-            border-top: 1px solid var(--border-light);
-            padding: 60px 40px 30px;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(20px);
-            position: relative;
-            z-index: 10;
-        }
-        
-        .footer-grid {
-            max-width: 1320px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 48px;
-            margin-bottom: 40px;
+        .copy-btn:hover {
+            background: var(--accent-gold);
+            color: var(--bg-base);
         }
 
+        /* TOAST */
+        .toast { position: fixed; top: 80px; right: 20px; padding: 16px 24px; border-radius: 12px; font-size: 0.9rem; font-weight: 600; z-index: 9999; transform: translateX(120%); transition: transform 0.4s ease; display: flex; align-items: center; gap: 10px; max-width: 400px; backdrop-filter: blur(20px); border: 1px solid; }
+        .toast.show { transform: translateX(0); }
+        .toast.success { background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.4); color: #10b981; }
+        .toast.error { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #ef4444; }
+        .toast.info { background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.4); color: #a78bfa; }
+
+        /* FOOTER & SOCIAL LINKS */
+        .footer { border-top: 1px solid var(--border-light); padding: 60px 40px 30px; background: rgba(0,0,0,0.6); backdrop-filter: blur(20px); position: relative; z-index: 10; }
+        .footer-grid { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 48px; margin-bottom: 40px; }
         .footer-brand p { color: var(--text-secondary); font-size: 0.9rem; margin: 16px 0; max-width: 300px; }
-        .footer-col h4 { font-family: 'Rajdhani', font-size: 1.1rem; margin-bottom: 20px; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col h4 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; margin-bottom: 20px; }
+        .footer-col ul { list-style: none; } .footer-col ul li { margin-bottom: 12px; }
         .footer-col ul li a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: 0.3s; }
         .footer-col ul li a:hover { color: var(--accent-gold); }
-        
-        .footer-bottom {
-            max-width: 1320px; margin: 0 auto;
-            border-top: 1px solid var(--border-light);
-            padding-top: 24px;
-            display: flex; justify-content: space-between;
-            font-size: 0.85rem; color: var(--text-muted);
-        }
+        .social-btn { display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: all 0.3s ease; margin-bottom: 10px; }
+        .social-btn:hover { transform: translateX(5px); }
+        .footer-bottom { max-width: 1320px; margin: 0 auto; border-top: 1px solid var(--border-light); padding-top: 24px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); }
 
-        /* RESPONSIVE */
+        /* FLOATING WHATSAPP BUTTON */
+        .float-wa {
+            position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff;
+            padding: 12px 22px; border-radius: 50px; display: flex; align-items: center; gap: 10px;
+            font-weight: 600; font-size: 0.95rem; text-decoration: none; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 9999; transition: all 0.3s ease;
+        }
+        .float-wa:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6); color: #fff; }
+        .float-wa i { font-size: 1.4rem; }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .mobile-toggle { display: flex; }
             .hero-title { font-size: 3rem; }
             .tournaments-grid, .features-grid, .footer-grid, .store-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
             .hero-actions { flex-direction: column; }
             .btn-large { width: 100%; justify-content: center; }
-            .store-alert { flex-direction: column; text-align: center; align-items: center; }
+            .float-wa { bottom: 20px; right: 20px; padding: 10px 18px; font-size: 0.85rem; }
+            .float-wa i { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -1159,13 +284,17 @@
         <div class="preloader-text">BATTLEFIELD</div>
     </div>
 
-    <!-- TEXTURE BACKGROUNDS -->
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
+    <!-- FLOATING WHATSAPP BUTTON (Opens Modal) -->
+    <a href="#" onclick="openModal('supportModal'); return false;" class="float-wa">
+        <i class="fab fa-whatsapp"></i> Customer Support
+    </a>
+
     <div class="bg-texture"></div>
     <div class="bg-overlay"></div>
-    <div class="bg-mesh"></div>
-    <div class="bg-grid"></div>
 
-    <!-- ANNOUNCEMENT BAR -->
     <div class="announce-bar">
         ⚡ Welcome to the New Premium Experience — Focus purely on Solo Domination! <a href="#tournaments">View Matches</a>
     </div>
@@ -1184,9 +313,9 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#faq">FAQ</a></li>
             </ul>
-            <div class="nav-actions">
+            <div class="nav-actions" id="navActions">
                 <button class="btn-outline" onclick="openModal('loginModal')">Sign In</button>
-                <button class="btn-premium" onclick="openModal('mainRegisterModal')">Register</button>
+                <button class="btn-premium" onclick="openModal('registerModal')">Register</button>
             </div>
         </div>
     </nav>
@@ -1195,22 +324,13 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-badge">
-                <span class="dot" style="color:var(--accent-gold)">●</span> Pure Solo Survival
+                <span style="color:var(--accent-gold)">●</span> Pure Solo Survival
             </div>
-            <h1 class="hero-title">
-                DOMINATE THE <br>
-                <span class="text-gold">SOLO ARENA</span>
-            </h1>
-            <p class="hero-desc">
-                Experience Pakistan's most premium PUBG eSports platform. Drop in solo, secure your kills, and earn real cash rewards instantly. Every kill counts!
-            </p>
+            <h1 class="hero-title">DOMINATE THE <br><span class="text-gold">SOLO ARENA</span></h1>
+            <p class="hero-desc">Experience Pakistan's most premium PUBG eSports platform. Drop in solo, secure your kills, and earn real cash rewards instantly. Every kill counts!</p>
             <div class="hero-actions">
-                <a href="#tournaments" class="btn-large btn-gold">
-                    Enter Tournament <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#features" class="btn-large btn-glass">
-                    <i class="fas fa-play-circle"></i> How it works
-                </a>
+                <a href="#tournaments" class="btn-large btn-gold">Enter Tournament <i class="fas fa-arrow-right"></i></a>
+                <a href="#features" class="btn-large btn-glass"><i class="fas fa-play-circle"></i> How it works</a>
             </div>
         </div>
     </section>
@@ -1218,14 +338,14 @@
     <!-- TOURNAMENTS -->
     <section class="section" id="tournaments">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <h2 class="section-title">Active <span>Tournaments</span></h2>
-                <p class="section-subtitle">Premium Solo Matches. Flat 150 PKR Entry. 50 PKR Per Kill.</p>
+                <p class="section-subtitle">Premium Matches. 150 PKR Entry. Huge Rewards!</p>
             </div>
-
             <div class="tournaments-grid">
+                
                 <!-- MATCH 1 (ERANGEL) -->
-                <div class="t-card reveal">
+                <div class="t-card">
                     <div class="t-banner">
                         <div class="t-tag">🔥 SOLO SURVIVAL</div>
                         <div class="t-status live-now"><span class="dot"></span> LIVE NOW</div>
@@ -1233,78 +353,62 @@
                     </div>
                     <div class="t-body">
                         <h3 class="t-name">Solo Domination - Match 1</h3>
-                        
-                        <div class="t-stats">
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨150</div>
-                                <div class="t-stat-label">Entry Fee</div>
-                            </div>
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨50</div>
-                                <div class="t-stat-label">Per Kill</div>
+                        <div class="t-stats" style="grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            <div class="t-stat"><div class="t-stat-val" style="font-size: 1.2rem;">₨150</div><div class="t-stat-label">Entry</div></div>
+                            <div class="t-stat"><div class="t-stat-val" style="font-size: 1.2rem;">₨75</div><div class="t-stat-label">Per Kill</div></div>
+                            <div class="t-stat" style="border-color: var(--accent-gold); background: rgba(251,191,36,0.1);">
+                                <div class="t-stat-val" style="color: #fff; font-size: 1.2rem;">₨2000</div>
+                                <div class="t-stat-label" style="color: var(--accent-gold); font-weight: bold;">Grand Prize</div>
                             </div>
                         </div>
-
                         <div class="t-actions">
-                            <button class="t-btn-join" onclick="openModal('tournamentJoinModal')"><i class="fas fa-gamepad"></i> Register Now</button>
+                            <button class="t-btn-join" onclick="joinTournament('Solo Domination - Erangel', 150)">
+                                <i class="fas fa-gamepad"></i> Register Now
+                            </button>
                         </div>
                     </div>
                 </div>
 
                 <!-- MATCH 2 (LIVIK) -->
-                <div class="t-card reveal" style="transition-delay: 0.1s">
+                <div class="t-card">
                     <div class="t-banner">
                         <div class="t-tag">⚡ FAST PACED</div>
-                        <div class="t-status normal">
-                            <span class="dot"></span> OPEN
-                        </div>
+                        <div class="t-status normal" style="color:var(--text-secondary); border-color:var(--border-light); background:rgba(255,255,255,0.05)">UPCOMING</div>
                         <div class="t-banner-center">LIVIK</div>
                     </div>
                     <div class="t-body">
                         <h3 class="t-name">Solo Rush - Match 2</h3>
-                        
                         <div class="t-stats">
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨150</div>
-                                <div class="t-stat-label">Entry Fee</div>
-                            </div>
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨50</div>
-                                <div class="t-stat-label">Per Kill</div>
-                            </div>
+                            <div class="t-stat"><div class="t-stat-val">₨150</div><div class="t-stat-label">Entry Fee</div></div>
+                            <div class="t-stat"><div class="t-stat-val">₨75</div><div class="t-stat-label">Per Kill</div></div>
                         </div>
-
                         <div class="t-actions">
-                            <button class="t-btn-join" onclick="openModal('tournamentJoinModal')"><i class="fas fa-gamepad"></i> Register Now</button>
+                            <button class="t-btn-join" disabled style="opacity: 0.5; cursor: not-allowed; background: transparent; color: var(--text-secondary); border-color: var(--border-light);">
+                                <i class="fas fa-lock"></i> Coming Soon
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- MATCH 3 (MIRAMAR) -->
-                <div class="t-card reveal" style="transition-delay: 0.2s">
+                <!-- MATCH 3 (TDM) -->
+                <div class="t-card">
                     <div class="t-banner">
-                        <div class="t-tag">🎯 SHARPSHOOTER</div>
-                        <div class="t-status normal" style="color:var(--text-secondary); border-color:var(--border-light); background:rgba(255,255,255,0.05)">
-                            UPCOMING
-                        </div>
-                        <div class="t-banner-center">MIRAMAR</div>
+                        <div class="t-tag">⚔️ HEAD TO HEAD</div>
+                        <div class="t-status normal" style="color:var(--text-secondary); border-color:var(--border-light); background:rgba(255,255,255,0.05)">UPCOMING</div>
+                        <div class="t-banner-center">WAREHOUSE</div>
                     </div>
                     <div class="t-body">
-                        <h3 class="t-name">Desert Sniper - Match 3</h3>
-                        
+                        <h3 class="t-name">TDM 1v1 Challenge</h3>
                         <div class="t-stats">
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨150</div>
-                                <div class="t-stat-label">Entry Fee</div>
-                            </div>
-                            <div class="t-stat">
-                                <div class="t-stat-val">₨50</div>
-                                <div class="t-stat-label">Per Kill</div>
+                            <div class="t-stat"><div class="t-stat-val">₨100</div><div class="t-stat-label">Entry Fee</div></div>
+                            <div class="t-stat" style="border-color: var(--accent-gold); background: rgba(251,191,36,0.1);">
+                                <div class="t-stat-val" style="color: #fff;">₨180</div><div class="t-stat-label" style="color: var(--accent-gold);">Winner</div>
                             </div>
                         </div>
-
                         <div class="t-actions">
-                            <button class="t-btn-join" onclick="openModal('tournamentJoinModal')"><i class="fas fa-gamepad"></i> Register Now</button>
+                            <button class="t-btn-join" disabled style="opacity: 0.5; cursor: not-allowed; background: transparent; color: var(--text-secondary); border-color: var(--border-light);">
+                                <i class="fas fa-lock"></i> Coming Soon
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1313,106 +417,96 @@
         </div>
     </section>
 
-    <!-- UC STORE (UPDATED WITH PUBG PICS & ALERT) -->
+    <!-- UC STORE -->
     <section class="section" id="store" style="background: rgba(13, 8, 24, 0.2)">
         <div class="container">
-            <div class="section-header reveal">
-                <span class="badge-soon">Coming Soon</span>
+            <div class="section-header">
                 <h2 class="section-title">PUBG <span>UC Store</span></h2>
                 <p class="section-subtitle">Premium direct top-up. Buy UC securely across Pakistan.</p>
             </div>
-
-            <!-- MIDASBUY DISCLAIMER ALERT -->
-            <div class="store-alert reveal">
-                <i class="fas fa-exclamation-triangle"></i>
+            
+            <div class="store-alert" style="background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.3); border-left-color: var(--success);">
+                <i class="fas fa-check-circle" style="color: var(--success);"></i>
                 <div class="store-alert-content">
-                    <h4>Midasbuy Payment Update</h4>
-                    <p>
-                        Currently, <span>EasyPaisa & JazzCash (Tax-Free)</span> options are unavailable on Midasbuy due to technical issues. <br>
-                        All our UC top-ups are now securely processed <span>via Debit/Credit Card (including taxes)</span>, which is why the current prices are slightly adjusted. We ensure 100% safe delivery!
-                    </p>
+                    <h4 style="color: var(--success);">Payment Update: EasyPaisa & JazzCash Live!</h4>
+                    <p>Good News! <span>EasyPaisa & JazzCash (Tax-Free)</span> options are now fully restored and Live. Enjoy 100% safe, fast, and secure UC delivery directly to your PUBG account!</p>
                 </div>
             </div>
 
             <div class="store-grid">
                 <!-- 60 UC -->
-                <div class="store-card reveal">
-                    <div class="store-img-wrapper">
-                        <!-- High Quality PUBG / Tactical Gaming Images -->
-                        <img src="https://images.unsplash.com/photo-1589241062272-c0a1f4360188?q=80&w=600&auto=format&fit=crop" alt="PUBG 60 UC Character">
+                <div class="store-card">
+                    <div class="store-img-wrapper" style="background: transparent; border: none;">
+                        <img src="uc-image.png" alt="60 UC" style="object-fit: contain; border-radius: 50px;">
                     </div>
                     <h3 class="store-title">60 UC</h3>
                     <div class="store-prices">
-                        <span class="price-old">₨ 400</span>
-                        <span class="price-new">₨ 370</span>
+                        <span class="price-old">₨ 400</span> <span class="price-new">₨ 370</span>
                     </div>
                     <ul class="uc-perks">
                         <li><i class="fas fa-check-circle"></i> Instant Delivery</li>
                         <li><i class="fas fa-check-circle"></i> Via Card (Tax Included)</li>
-                        <li><i class="fas fa-times-circle" style="color:var(--danger)"></i> EP / JazzCash Not Available</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--success)"></i> EasyPaisa & JazzCash Available</li>
                     </ul>
-                    <button class="btn-store">Purchase</button>
+                    <button class="btn-store" onclick="window.open('https://wa.me/923356933658?text=Hi,%20I%20want%20to%20buy%2060%20UC.', '_blank')">Purchase</button>
                 </div>
 
                 <!-- 325 UC -->
-                <div class="store-card reveal" style="transition-delay: 0.1s">
-                    <div class="store-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=600&auto=format&fit=crop" alt="PUBG 325 UC Gameplay">
+                <div class="store-card">
+                    <div class="store-img-wrapper" style="background: transparent; border: none;">
+                        <img src="uc-image.png" alt="325 UC" style="object-fit: contain; border-radius: 50px;">
                     </div>
                     <h3 class="store-title">325 UC</h3>
                     <div class="store-prices">
-                        <span class="price-old">₨ 1800</span>
-                        <span class="price-new">₨ 1500</span>
+                        <span class="price-old">₨ 1800</span> <span class="price-new">₨ 1500</span>
                     </div>
                     <ul class="uc-perks">
                         <li><i class="fas fa-check-circle"></i> Instant Delivery</li>
                         <li><i class="fas fa-check-circle"></i> Via Card (Tax Included)</li>
-                        <li><i class="fas fa-times-circle" style="color:var(--danger)"></i> EP / JazzCash Not Available</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--success)"></i> EasyPaisa & JazzCash Available</li>
                     </ul>
-                    <button class="btn-store">Purchase</button>
+                    <button class="btn-store" onclick="window.open('https://wa.me/923356933658?text=Hi,%20I%20want%20to%20buy%20325%20UC.', '_blank')">Purchase</button>
                 </div>
 
                 <!-- 660 UC -->
-                <div class="store-card reveal" style="transition-delay: 0.2s; border-color: var(--border-gold);">
-                    <div class="store-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600&auto=format&fit=crop" alt="PUBG 660 UC Setup">
+                <div class="store-card" style="border-color: var(--border-gold);">
+                    <div class="store-img-wrapper" style="background: transparent; border: none;">
+                        <img src="uc-image.png" alt="660 UC" style="object-fit: contain; border-radius: 50px;">
                     </div>
                     <h3 class="store-title" style="color: #fff">660 UC</h3>
                     <div class="store-prices">
-                        <span class="price-old">₨ 3600</span>
-                        <span class="price-new" style="color: var(--accent-gold)">₨ 3300</span>
+                        <span class="price-old">₨ 3600</span> <span class="price-new" style="color: var(--accent-gold)">₨ 3300</span>
                     </div>
                     <ul class="uc-perks">
                         <li><i class="fas fa-check-circle"></i> Instant Delivery</li>
                         <li><i class="fas fa-check-circle"></i> Via Card (Tax Included)</li>
-                        <li><i class="fas fa-times-circle" style="color:var(--danger)"></i> EP / JazzCash Not Available</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--success)"></i> EasyPaisa & JazzCash Available</li>
                     </ul>
-                    <button class="btn-store">Purchase</button>
+                    <button class="btn-store" onclick="window.open('https://wa.me/923356933658?text=Hi,%20I%20want%20to%20buy%20660%20UC.', '_blank')">Purchase</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PREMIUM FEATURES -->
+    <!-- FEATURES -->
     <section class="section" id="features">
         <div class="container">
-            <div class="section-header reveal">
+            <div class="section-header">
                 <h2 class="section-title">Premium <span>Experience</span></h2>
                 <p class="section-subtitle">We focus on quality, security, and fast payouts.</p>
             </div>
-
             <div class="features-grid">
-                <div class="f-card reveal">
+                <div class="f-card">
                     <div class="f-icon"><i class="fas fa-crosshairs"></i></div>
                     <h3 class="f-title">Fixed Per Kill Reward</h3>
-                    <p class="f-desc">No complex prize distribution. You pay 150 PKR entry, and every kill you secure earns you flat 50 PKR.</p>
+                    <p class="f-desc">No complex prize distribution. You pay entry fee, and every kill you secure earns you a flat reward.</p>
                 </div>
-                <div class="f-card reveal" style="transition-delay: 0.1s">
+                <div class="f-card">
                     <div class="f-icon"><i class="fas fa-wallet"></i></div>
                     <h3 class="f-title">Instant Payouts</h3>
                     <p class="f-desc">Withdraw your earnings directly to your EasyPaisa, JazzCash, or Bank Account within minutes.</p>
                 </div>
-                <div class="f-card reveal" style="transition-delay: 0.2s">
+                <div class="f-card">
                     <div class="f-icon"><i class="fas fa-shield-alt"></i></div>
                     <h3 class="f-title">Anti-Cheat Verified</h3>
                     <p class="f-desc">100% fair play. Every match is spectated and recorded to ensure hackers stay out of the arena.</p>
@@ -1424,133 +518,70 @@
     <!-- FAQ -->
     <section class="section" id="faq" style="background: rgba(13, 8, 24, 0.4)">
         <div class="container">
-            <div class="section-header reveal">
-                <h2 class="section-title">Common <span>Questions</span></h2>
-                <p class="section-subtitle">Everything you need to know about our Solo matches.</p>
+            <div class="section-header">
+                <h2 class="section-title">Frequently <span>Asked</span></h2>
+                <p class="section-subtitle">Got questions? We've got answers.</p>
             </div>
             <div class="faq-wrap">
-                <div class="faq-item open reveal">
-                    <div class="faq-q" onclick="toggleFaq(this)"><span>How does the Solo Reward System work?</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-a"><div class="faq-a-inner">Very simple! You pay a flat 150 PKR entry fee. In the match, every single kill you get earns you 50 PKR. So if you get 4 kills, you earn 200 PKR (50 PKR profit). Plus, top placements get additional prize pool shares!</div></div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How do I join a tournament? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-a"><div class="faq-a-inner">Register an account, browse active tournaments, click "Register Now", pay the entry fee and enter your transaction ID. You will be redirected to our WhatsApp to confirm.</div></div>
                 </div>
-                <div class="faq-item reveal">
-                    <div class="faq-q" onclick="toggleFaq(this)"><span>How do I get the Room ID and Password?</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-a"><div class="faq-a-inner">Once you register for a match, the Room ID and Password will be visible on your dashboard and sent to your WhatsApp exactly 15 minutes before the match starts.</div></div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How much do I earn per kill? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-a"><div class="faq-a-inner">Check the tournament card for exact amounts. For example, 75 PKR per confirmed kill in Erangel.</div></div>
                 </div>
-                <div class="faq-item reveal">
-                    <div class="faq-q" onclick="toggleFaq(this)"><span>What if someone uses hacks?</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="faq-a"><div class="faq-a-inner">We have zero tolerance for cheating. Moderators spectate every match. If someone is caught hacking, they are permanently banned, and their kills/points are invalidated. Affected players are compensated.</div></div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">How do I withdraw my earnings? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-a"><div class="faq-a-inner">After the match ends, earnings are credited within 30 minutes. Withdraw to EasyPaisa, JazzCash, or Bank Account instantly.</div></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <div class="nav-logo-icon" style="display:inline-flex; margin-bottom:12px"><i class="fas fa-crosshairs"></i></div>
-                <h3 style="font-family:'Orbitron'; font-weight:800; letter-spacing:1px; margin-bottom:8px">BATTLEFIELD <span style="color:var(--accent-gold)">ARENA</span></h3>
-                <p>Pakistan's most premium platform for competitive Solo PUBG players. Experience fair play and instant payouts.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Navigation</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#tournaments">Solo Matches</a></li>
-                    <li><a href="#store">UC Store</a></li>
-                    <li><a href="#features">Features</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal & Support</h4>
-                <ul>
-                    <li><a href="#">WhatsApp Support</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Anti-Cheat Rules</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div>© 2025 Battlefield Arena. Premium Edition.</div>
-            <div>Payments: EasyPaisa • JazzCash • Bank Transfer</div>
-        </div>
-    </footer>
-
-
-    <!-- ==========================================
+    <!-- ============================================
          MODALS
-    =========================================== -->
+         ============================================ -->
 
-    <!-- MAIN REGISTER MODAL (Triggered by Header) -->
-    <div class="modal-overlay" id="mainRegisterModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal('mainRegisterModal')"><i class="fas fa-times"></i></button>
-            <h2 class="modal-heading">Create Account 🏆</h2>
-            <p class="modal-sub">Join Battlefield Arena to start competing.</p>
+    <!-- CUSTOMER SUPPORT MODAL (NUMBERS HIDDEN) -->
+    <div class="modal-overlay" id="supportModal">
+        <div class="modal" style="max-width: 400px; text-align: center;">
+            <button class="modal-close" onclick="closeModal('supportModal')"><i class="fas fa-times"></i></button>
+            <h2 class="modal-heading">Customer Support</h2>
+            <p class="modal-sub">Select an agent to chat on WhatsApp</p>
 
-            <div class="input-group">
-                <label class="input-label">Username</label>
-                <input type="text" class="input-field" placeholder="Choose a username">
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
+                <a href="https://wa.me/923104874635?text=Hi,%20I%20need%20support." target="_blank" class="modal-btn" style="background: #25d366; color: #fff; text-decoration: none;">
+                    <i class="fab fa-whatsapp"></i> Support Agent 1
+                </a>
+                <a href="https://wa.me/923198391886?text=Hi,%20I%20need%20support." target="_blank" class="modal-btn" style="background: #25d366; color: #fff; text-decoration: none;">
+                    <i class="fab fa-whatsapp"></i> Support Agent 2
+                </a>
+                <a href="https://wa.me/923356933658?text=Hi,%20I%20need%20support." target="_blank" class="modal-btn" style="background: #25d366; color: #fff; text-decoration: none;">
+                    <i class="fab fa-whatsapp"></i> Support Agent 3
+                </a>
             </div>
-            <div class="input-group">
-                <label class="input-label">Phone Number or Email</label>
-                <input type="text" class="input-field" placeholder="03XX-XXXXXXX or Email">
-            </div>
-            <div class="input-group">
-                <label class="input-label">Password</label>
-                <input type="password" class="input-field" placeholder="Create strong password">
-            </div>
-
-            <button class="modal-btn"><i class="fas fa-user-plus"></i> Sign Up</button>
-            
-            <div class="divider">OR</div>
-            
-            <button class="btn-google">
-                <!-- Using an SVG for genuine Google Logo look -->
-                <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-                Continue with Google
-            </button>
         </div>
     </div>
 
-    <!-- TOURNAMENT JOIN MODAL (Triggered by Match Cards) -->
-    <div class="modal-overlay" id="tournamentJoinModal">
+    <!-- REGISTER MODAL -->
+    <div class="modal-overlay" id="registerModal">
         <div class="modal">
-            <button class="modal-close" onclick="closeModal('tournamentJoinModal')"><i class="fas fa-times"></i></button>
-            <h2 class="modal-heading">Match Registration ⚔️</h2>
-            <p class="modal-sub">Submit your details and payment screenshot to get your slot.</p>
+            <button class="modal-close" onclick="closeModal('registerModal')"><i class="fas fa-times"></i></button>
+            <h2 class="modal-heading">Create Account</h2>
+            <p class="modal-sub">Join the battlefield and start earning</p>
 
-            <div class="input-group">
-                <label class="input-label">In-Game Name (IGN)</label>
-                <input type="text" class="input-field" placeholder="Enter your PUBG name">
-            </div>
-            <div class="input-group">
-                <label class="input-label">PUBG ID</label>
-                <input type="text" class="input-field" placeholder="Enter your numeric PUBG ID">
-            </div>
-            <div class="input-group">
-                <label class="input-label">WhatsApp Number (Payment Sent From)</label>
-                <input type="tel" class="input-field" placeholder="03XX-XXXXXXX">
-            </div>
-            <div class="input-group">
-                <label class="input-label">Payment Screenshot</label>
-                <div class="file-upload-wrapper">
-                    <input type="file" id="paymentScreenshot" class="file-input" accept="image/*">
-                    <label for="paymentScreenshot" class="file-label">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span id="fileLabelText">Click to upload screenshot</span>
-                    </label>
-                </div>
-            </div>
+            <div class="input-group"><label class="input-label">Full Name *</label><input type="text" id="regName" class="input-field" placeholder="Ahmed Khan"></div>
+            <div class="input-group"><label class="input-label">Email *</label><input type="email" id="regEmail" class="input-field" placeholder="ahmed@gmail.com"></div>
+            <div class="input-group"><label class="input-label">Phone (EasyPaisa/JazzCash)</label><input type="tel" id="regPhone" class="input-field" placeholder="03XX-XXXXXXX"></div>
+            <!-- PUBG ID INPUT -->
+            <div class="input-group"><label class="input-label">PUBG Player ID *</label><input type="text" id="regPubgId" class="input-field" placeholder="e.g. 51234567890 (Min 11 digits)"></div>
+            <div class="input-group"><label class="input-label">Password *</label><input type="password" id="regPassword" class="input-field" placeholder="Min 6 characters"></div>
 
-            <button class="modal-btn"><i class="fas fa-check-circle"></i> Confirm Registration</button>
+            <button class="modal-btn" id="regBtn" onclick="registerUser()"><i class="fas fa-user-plus"></i> Register Now</button>
+            <div class="divider">or</div>
+            <button class="btn-google" onclick="googleLogin()"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="G"> Continue with Google</button>
+            <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted);">Already have an account? <a href="#" style="color:var(--accent-gold); text-decoration:none; font-weight:600;" onclick="closeModal('registerModal'); openModal('loginModal');">Sign In</a></p>
         </div>
     </div>
 
@@ -1558,94 +589,347 @@
     <div class="modal-overlay" id="loginModal">
         <div class="modal">
             <button class="modal-close" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
-            <h2 class="modal-heading">Welcome Back 🎮</h2>
-            <p class="modal-sub">Login to view your registered matches & room IDs.</p>
-            <div class="input-group">
-                <label class="input-label">Username / Email</label>
-                <input type="text" class="input-field" placeholder="Enter username or email">
-            </div>
-            <div class="input-group">
-                <label class="input-label">Password</label>
-                <input type="password" class="input-field" placeholder="Enter your password">
-            </div>
-            <button class="modal-btn"><i class="fas fa-sign-in-alt"></i> Login to Dashboard</button>
+            <h2 class="modal-heading">Welcome Back</h2>
+            <p class="modal-sub">Sign in to your battlefield account</p>
+
+            <div class="input-group"><label class="input-label">Email</label><input type="email" id="loginEmail" class="input-field" placeholder="ahmed@gmail.com"></div>
+            <div class="input-group"><label class="input-label">Password</label><input type="password" id="loginPassword" class="input-field" placeholder="Your password"></div>
+
+            <button class="modal-btn" id="loginBtn" onclick="loginUser()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+            <div class="divider">or</div>
+            <button class="btn-google" onclick="googleLogin()"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="G"> Continue with Google</button>
+            <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted);">Don't have an account? <a href="#" style="color:var(--accent-gold); text-decoration:none; font-weight:600;" onclick="closeModal('loginModal'); openModal('registerModal');">Register</a></p>
         </div>
     </div>
 
+    <!-- TOURNAMENT JOIN MODAL -->
+    <div class="modal-overlay" id="tournamentModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal('tournamentModal')"><i class="fas fa-times"></i></button>
+            <h2 class="modal-heading">🎮 Join Tournament</h2>
+            <p class="modal-sub" id="tournamentModalInfo">Confirm your registration</p>
 
-    <!-- JS -->
-    <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 1000);
-        });
+            <div style="background:rgba(251,191,36,0.05); border:1px solid var(--border-gold); border-radius:12px; padding:16px; margin-bottom:16px; text-align:center;">
+                <div style="font-family:'Orbitron',sans-serif; font-size:1.05rem; font-weight:700; color:var(--accent-gold); margin-bottom:4px;" id="tournamentModalName">—</div>
+                <div style="font-size:0.9rem; color:var(--text-secondary);">Entry Fee: <strong style="color:#fff;">₨ <span id="tournamentModalFee">150</span></strong></div>
+            </div>
 
-        // Navbar scroll
-        window.addEventListener('scroll', () => {
-            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
-        });
+            <!-- PAYMENT DETAILS BOX (ABOVE PUBG ID) -->
+            <div class="payment-send-box">
+                <div class="payment-send-title">
+                    <i class="fas fa-wallet"></i> Payment Kahan Send Karni Hai:
+                </div>
+                <div class="input-group" style="margin-bottom: 12px;">
+                    <label class="input-label">Select Payment Account *</label>
+                    <select id="joinPayment" class="input-field" style="cursor:pointer;" onchange="updatePaymentAccountDetails()">
+                        <option value="EasyPaisa">EasyPaisa</option>
+                        <option value="JazzCash">JazzCash</option>
+                        <option value="SadaPay">SadaPay</option>
+                        <option value="NayaPay">NayaPay</option>
+                    </select>
+                </div>
 
-        // FAQ Toggle
-        function toggleFaq(el) {
-            const item = el.parentElement;
-            const wasOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('open'));
-            if (!wasOpen) item.classList.add('open');
-        }
+                <!-- 3 FIELDS FOR ACCOUNT DETAILS -->
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Account Type:</span>
+                    <span class="payment-detail-val" id="accTypeDisplay" style="color: var(--accent-gold);">EasyPaisa</span>
+                </div>
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Account Name:</span>
+                    <span class="payment-detail-val" id="accNameDisplay" style="font-family: 'Inter', sans-serif;">Abida Parveen</span>
+                </div>
+                <div class="payment-detail-row">
+                    <span class="payment-detail-label">Account Number:</span>
+                    <span class="payment-detail-val">
+                        <span id="accNumDisplay">03198391886</span>
+                        <button type="button" class="copy-btn" onclick="copyAccNumber()"><i class="fas fa-copy"></i> Copy</button>
+                    </span>
+                </div>
+            </div>
 
-        // Modal Functions
-        function openModal(id) {
-            document.getElementById(id).classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+            <div class="input-group"><label class="input-label">Your PUBG ID *</label><input type="text" id="joinPubgId" class="input-field" placeholder="e.g. 51234567890 (Min 11 digits)"></div>
+            <div class="input-group"><label class="input-label">Transaction ID (TID) *</label><input type="text" id="joinTxnId" class="input-field" placeholder="e.g. 1234567890"></div>
 
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
-            document.body.style.overflow = '';
-        }
+            <button class="modal-btn" id="joinBtn" onclick="confirmJoinTournament()"><i class="fas fa-check-circle"></i> Confirm Registration</button>
+        </div>
+    </div>
 
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal-overlay').forEach(o => {
-            o.addEventListener('click', e => {
-                if (e.target === o) closeModal(o.id);
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="nav-logo" style="margin-bottom:8px;">
+                    <div class="nav-logo-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="nav-logo-text">BATTLEFIELD <span>ARENA</span></div>
+                </a>
+                <p>Pakistan's premium PUBG eSports platform. Play solo, earn real cash.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul><li><a href="#tournaments">Tournaments</a></li><li><a href="#store">UC Store</a></li><li><a href="#features">Features</a></li><li><a href="#faq">FAQ</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Support</h4>
+                <ul><li><a href="#">Contact Us</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Refund Policy</a></li></ul>
+            </div>
+            <!-- NEW SOCIAL LINKS BLOCK -->
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div style="display: flex; flex-direction: column;">
+                    <a href="https://tiktok.com" class="social-btn" style="background:#000; color:#fff; border:1px solid rgba(255,255,255,0.2);" target="_blank">
+                        <i class="fab fa-tiktok"></i> TikTok
+                    </a>
+                    <a href="https://whatsapp.com" class="social-btn" style="background:#25d366; color:#fff;" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Channel
+                    </a>
+                    <a href="https://whatsapp.com" class="social-btn" style="background:#25d366; color:#fff;" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Group
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Battlefield Arena. All rights reserved.</span>
+            <span>(Kill for cash | Gamers arena)</span>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         🔥 FIREBASE SDK + ALL LOGIC
+         ============================================ -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getFirestore, collection, addDoc, doc, setDoc, getDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+        // FIREBASE CONFIG
+        const firebaseConfig = {
+            apiKey: "AIzaSyDST6H6x-J8oxYdSsmEm5y7iFL6t-dSHZ4",
+            authDomain: "battlefield-arena-01.firebaseapp.com",
+            projectId: "battlefield-arena-01",
+            storageBucket: "battlefield-arena-01.firebasestorage.app",
+            messagingSenderId: "988093823324",
+            appId: "1:988093823324:web:7e56b803e6e4a4771d6999"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const googleProvider = new GoogleAuthProvider();
+
+        // PAYMENT ACCOUNT DETAILS LOGIC
+        const paymentAccounts = {
+            EasyPaisa: { type: "EasyPaisa", name: "Abida Parveen", number: "03198391886" },
+            JazzCash: { type: "JazzCash", name: "Abida Parveen", number: "03198391886" },
+            SadaPay: { type: "SadaPay", name: "Abida Parveen", number: "03198391886" },
+            NayaPay: { type: "NayaPay", name: "Faraz Ahmad", number: "03042296790" }
+        };
+
+        window.updatePaymentAccountDetails = function() {
+            const selected = document.getElementById("joinPayment").value;
+            const details = paymentAccounts[selected];
+            if (details) {
+                document.getElementById("accTypeDisplay").textContent = details.type;
+                document.getElementById("accNameDisplay").textContent = details.name;
+                document.getElementById("accNumDisplay").textContent = details.number;
+            }
+        };
+
+        window.copyAccNumber = function() {
+            const num = document.getElementById("accNumDisplay").textContent;
+            navigator.clipboard.writeText(num).then(() => {
+                showToast("Account Number Copied: " + num, "success");
             });
+        };
+
+        // TOAST SYSTEM
+        function showToast(message, type = "info") {
+            const toast = document.getElementById("toast");
+            const icons = { success: "fa-check-circle", error: "fa-exclamation-circle", info: "fa-info-circle" };
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<i class="fas ${icons[type]}"></i> ${message}`;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 4000);
+        }
+        window.showToast = showToast;
+
+        // MODALS
+        window.openModal = function(id) { document.getElementById(id).classList.add("active"); document.body.style.overflow = "hidden"; };
+        window.closeModal = function(id) { document.getElementById(id).classList.remove("active"); document.body.style.overflow = ""; };
+        document.querySelectorAll(".modal-overlay").forEach(overlay => {
+            overlay.addEventListener("click", (e) => { if (e.target === overlay) { overlay.classList.remove("active"); document.body.style.overflow = ""; }});
         });
 
-        // Close modal on Escape key
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal-overlay').forEach(m => closeModal(m.id));
-            }
-        });
+        // REGISTER
+        window.registerUser = async function() {
+            const name = document.getElementById("regName").value.trim();
+            const email = document.getElementById("regEmail").value.trim();
+            const phone = document.getElementById("regPhone").value.trim();
+            const pubgId = document.getElementById("regPubgId").value.trim();
+            const password = document.getElementById("regPassword").value;
+            const btn = document.getElementById("regBtn");
 
-        // File Upload Text Change for Tournament Modal
-        document.getElementById('paymentScreenshot').addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'Click to upload screenshot';
-            document.getElementById('fileLabelText').textContent = fileName;
-            
-            // Add a highlight color when file is selected
-            if(e.target.files[0]) {
-                document.querySelector('.file-label').style.borderColor = 'var(--success)';
-                document.querySelector('.file-label i').style.color = 'var(--success)';
-                document.querySelector('.file-label i').className = 'fas fa-check-circle';
+            if (!name || !email || !password || !pubgId) { showToast("Sare * wale fields zaroori hain!", "error"); return; }
+            if (password.length < 6) { showToast("Password kam az kam 6 characters ka hona chahiye!", "error"); return; }
+            if (!/^\d{11,}$/.test(pubgId)) { showToast("PUBG ID mein sirf numbers hone chahiye (kam az kam 11 digits)!", "error"); return; }
+
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                await setDoc(doc(db, "users", userCredential.user.uid), {
+                    name: name, email: email, phone: phone, pubgId: pubgId,
+                    createdAt: serverTimestamp(), totalEarnings: 0, totalKills: 0, loginMethod: "email"
+                });
+                showToast("Registration Successful! Welcome " + name, "success");
+                closeModal("registerModal"); updateNavbar(userCredential.user);
+            } catch (error) {
+                if (error.code === "auth/email-already-in-use") showToast("Ye email pehle se registered hai!", "error");
+                else showToast("Error: " + error.message, "error");
+            } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-user-plus"></i> Register Now'; }
+        };
+
+        // LOGIN
+        window.loginUser = async function() {
+            const email = document.getElementById("loginEmail").value.trim();
+            const password = document.getElementById("loginPassword").value;
+            const btn = document.getElementById("loginBtn");
+
+            if (!email || !password) { showToast("Email aur Password dono zaroori hain!", "error"); return; }
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const userDoc = await getDoc(doc(db, "users", userCredential.user.uid));
+                if (userDoc.exists()) showToast("Welcome back, " + userDoc.data().name + "!", "success");
+                closeModal("loginModal"); updateNavbar(userCredential.user);
+            } catch (error) {
+                showToast("Email ya Password ghalat hai!", "error");
+            } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In'; }
+        };
+
+        // GOOGLE LOGIN
+        window.googleLogin = async function() {
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                const userDoc = await getDoc(doc(db, "users", result.user.uid));
+                if (!userDoc.exists()) {
+                    await setDoc(doc(db, "users", result.user.uid), {
+                        name: result.user.displayName || "Player", email: result.user.email,
+                        phone: "", pubgId: "", createdAt: serverTimestamp(), totalEarnings: 0, totalKills: 0, loginMethod: "google"
+                    });
+                }
+                showToast("Google Login Successful!", "success");
+                closeModal("loginModal"); closeModal("registerModal"); updateNavbar(result.user);
+            } catch (error) { showToast("Google Login Failed", "error"); }
+        };
+
+        // TOURNAMENT JOIN (Opens Modal)
+        let pendingTournament = null;
+        window.joinTournament = function(tournamentName, entryFee) {
+            const user = auth.currentUser;
+            if (!user) { showToast("Pehle Login karo tournament join karne ke liye!", "error"); openModal("loginModal"); return; }
+            pendingTournament = { name: tournamentName, fee: entryFee };
+            document.getElementById("tournamentModalName").textContent = tournamentName;
+            document.getElementById("tournamentModalFee").textContent = entryFee;
+            updatePaymentAccountDetails();
+            getDoc(doc(db, "users", user.uid)).then(userDoc => {
+                if (userDoc.exists() && userDoc.data().pubgId) document.getElementById("joinPubgId").value = userDoc.data().pubgId;
+            });
+            openModal("tournamentModal");
+        };
+
+        // CONFIRM TOURNAMENT REGISTRATION & REDIRECT
+        window.confirmJoinTournament = async function() {
+            const user = auth.currentUser;
+            if (!user || !pendingTournament) return;
+
+            const pubgId = document.getElementById("joinPubgId").value.trim();
+            const payment = document.getElementById("joinPayment").value;
+            const txnId = document.getElementById("joinTxnId").value.trim();
+            const btn = document.getElementById("joinBtn");
+
+            if (!pubgId || !txnId) { showToast("PUBG ID aur Transaction ID zaroori hain!", "error"); return; }
+            if (!/^\d{11,}$/.test(pubgId)) { showToast("PUBG ID mein sirf numbers hone chahiye (kam az kam 11 digits)!", "error"); return; }
+
+            btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+            try {
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                const userData = userDoc.exists() ? userDoc.data() : {};
+                
+                const q = query(collection(db, "registrations"), where("userId", "==", user.uid), where("tournamentName", "==", pendingTournament.name));
+                if (!(await getDocs(q)).empty) { showToast("Tum already registered ho!", "error"); btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Registration'; return; }
+
+                await addDoc(collection(db, "registrations"), {
+                    userId: user.uid, userName: userData.name || "Unknown", userEmail: user.email, userPhone: userData.phone || "Not Set",
+                    userPubgId: pubgId, tournamentName: pendingTournament.name, entryFee: pendingTournament.fee,
+                    paymentMethod: payment, transactionId: txnId, status: "pending_verification", registeredAt: serverTimestamp()
+                });
+
+                showToast("Success! Redirecting to WhatsApp...", "success");
+                closeModal("tournamentModal");
+                
+                document.getElementById("joinPubgId").value = ""; document.getElementById("joinTxnId").value = "";
+                let registeredGame = pendingTournament.name;
+                pendingTournament = null;
+
+                setTimeout(() => {
+                    let textMsg = encodeURIComponent(`Hi, I just paid via ${payment} and registered for the tournament: ${registeredGame}. My Name: ${userData.name}, Email: ${user.email}, PUBG ID: ${pubgId}, TID: ${txnId}`);
+                    window.open(`https://wa.me/923198391886?text=${textMsg}`, "_blank");
+                }, 1500);
+
+            } catch (error) { showToast("Registration Failed: " + error.message, "error"); } 
+            finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-check-circle"></i> Confirm Registration'; }
+        };
+
+        window.logoutUser = async function() { await signOut(auth); showToast("Logged out successfully!", "info"); location.reload(); };
+
+        function updateNavbar(user) {
+            const actionsDiv = document.getElementById("navActions");
+            if (!actionsDiv) return;
+            if (user) {
+                const displayName = user.displayName || user.email.split("@")[0];
+                actionsDiv.innerHTML = `<span style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem;"><i class="fas fa-user-circle"></i> ${displayName}</span>
+                                        <button class="btn-outline" onclick="logoutUser()"><i class="fas fa-sign-out-alt"></i> Logout</button>`;
             } else {
-                document.querySelector('.file-label').style.borderColor = 'var(--border-gold)';
-                document.querySelector('.file-label i').style.color = 'var(--accent-gold)';
-                document.querySelector('.file-label i').className = 'fas fa-cloud-upload-alt';
+                actionsDiv.innerHTML = `<button class="btn-outline" onclick="openModal('loginModal')">Sign In</button>
+                                        <button class="btn-premium" onclick="openModal('registerModal')">Register</button>`;
             }
-        });
+        }
 
-        // Scroll reveal animation
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('visible');
-                    observer.unobserve(e.target);
+        onAuthStateChanged(auth, (user) => { updateNavbar(user); });
+
+        // ACTIVE TAB AUTO SCROLL LOGIC & OTHER UTILS
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => { 
+            document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 50); 
+            
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        window.addEventListener("load", () => { setTimeout(() => { document.getElementById("preloader").classList.add("hidden"); }, 1500); });
         
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        window.toggleFaq = function(el) {
+            const item = el.parentElement; const isOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+            if (!isOpen) item.classList.add("open");
+        };
     </script>
 </body>
 </html>
