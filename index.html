@@ -167,8 +167,6 @@
         .divider { display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--text-muted); font-size: 0.85rem; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-light); }
         .divider:not(:empty)::before { margin-right: .25em; } .divider:not(:empty)::after { margin-left: .25em; }
-        .btn-google { width: 100%; padding: 12px; background: #ffffff; color: #333333; border: none; border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .btn-google:hover { background: #f1f1f1; }
 
         /* PAYMENT DETAILS BOX IN MODAL */
         .payment-send-box {
@@ -265,6 +263,9 @@
         .float-wa i { font-size: 1.4rem; }
 
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
             .nav-links { display: none; }
             .hero-title { font-size: 3rem; }
             .tournaments-grid, .features-grid, .footer-grid, .store-grid { grid-template-columns: 1fr; }
@@ -273,6 +274,23 @@
             .btn-large { width: 100%; justify-content: center; }
             .float-wa { bottom: 20px; right: 20px; padding: 10px 18px; font-size: 0.85rem; }
             .float-wa i { font-size: 1.2rem; }
+            
+            /* Responsive adjustments for nav buttons */
+            .nav-actions {
+                gap: 8px;
+            }
+            .btn-outline, .btn-premium {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            .nav-logo-text {
+                font-size: 1rem;
+            }
+            .nav-logo-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -579,8 +597,7 @@
             <div class="input-group"><label class="input-label">Password *</label><input type="password" id="regPassword" class="input-field" placeholder="Min 6 characters"></div>
 
             <button class="modal-btn" id="regBtn" onclick="registerUser()"><i class="fas fa-user-plus"></i> Register Now</button>
-            <div class="divider">or</div>
-            <button class="btn-google" onclick="googleLogin()"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="G"> Continue with Google</button>
+            
             <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted);">Already have an account? <a href="#" style="color:var(--accent-gold); text-decoration:none; font-weight:600;" onclick="closeModal('registerModal'); openModal('loginModal');">Sign In</a></p>
         </div>
     </div>
@@ -596,8 +613,7 @@
             <div class="input-group"><label class="input-label">Password</label><input type="password" id="loginPassword" class="input-field" placeholder="Your password"></div>
 
             <button class="modal-btn" id="loginBtn" onclick="loginUser()"><i class="fas fa-sign-in-alt"></i> Sign In</button>
-            <div class="divider">or</div>
-            <button class="btn-google" onclick="googleLogin()"><img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" alt="G"> Continue with Google</button>
+            
             <p style="text-align:center; margin-top:16px; font-size:0.85rem; color:var(--text-muted);">Don't have an account? <a href="#" style="color:var(--accent-gold); text-decoration:none; font-weight:600;" onclick="closeModal('loginModal'); openModal('registerModal');">Register</a></p>
         </div>
     </div>
@@ -699,7 +715,7 @@
          ============================================ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
         import { getFirestore, collection, addDoc, doc, setDoc, getDoc, query, where, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
         // FIREBASE CONFIG
@@ -715,7 +731,6 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const googleProvider = new GoogleAuthProvider();
 
         // PAYMENT ACCOUNT DETAILS LOGIC
         const paymentAccounts = {
@@ -806,22 +821,6 @@
             } catch (error) {
                 showToast("Email ya Password ghalat hai!", "error");
             } finally { btn.disabled = false; btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In'; }
-        };
-
-        // GOOGLE LOGIN
-        window.googleLogin = async function() {
-            try {
-                const result = await signInWithPopup(auth, googleProvider);
-                const userDoc = await getDoc(doc(db, "users", result.user.uid));
-                if (!userDoc.exists()) {
-                    await setDoc(doc(db, "users", result.user.uid), {
-                        name: result.user.displayName || "Player", email: result.user.email,
-                        phone: "", pubgId: "", createdAt: serverTimestamp(), totalEarnings: 0, totalKills: 0, loginMethod: "google"
-                    });
-                }
-                showToast("Google Login Successful!", "success");
-                closeModal("loginModal"); closeModal("registerModal"); updateNavbar(result.user);
-            } catch (error) { showToast("Google Login Failed", "error"); }
         };
 
         // TOURNAMENT JOIN (Opens Modal)
